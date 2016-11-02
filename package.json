@@ -42,5 +42,6 @@
   "bugs": {
     "url": "https://github.com/dbrockman/promise-map-limit/issues"
   },
-  "homepage": "https://github.com/dbrockman/promise-map-limit#readme"
+  "homepage": "https://github.com/dbrockman/promise-map-limit#readme",
+  "version": "1.0.0"
 }
