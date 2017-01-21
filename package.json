@@ -10,8 +10,8 @@
     "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "devDependencies": {
-    "jest": "^16.0.2",
-    "semantic-release": "^4.3.5"
+    "jest": "^18.1.0",
+    "semantic-release": "^6.3.2"
   },
   "jest": {
     "testEnvironment": "node"
