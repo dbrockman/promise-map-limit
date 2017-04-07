@@ -115,7 +115,7 @@ describe('when the iteratee function throws an error', () => {
       throw new Error('test error');
     }).then(shouldReject, err => {
       expect(err.message).toBe('test error');
-    })
+    });
   });
 
 });
@@ -125,7 +125,7 @@ describe('when the iteratee function rejects', () => {
   it('should reject with the error', () => {
     return mapLimit([1, 2, 3], 10, () => Promise.reject(new Error('test error'))).then(shouldReject, err => {
       expect(err.message).toBe('test error');
-    })
+    });
   });
 
 });
@@ -150,7 +150,7 @@ describe('when the iteratee function is omitted', () => {
         () => 'a sync result',
       ], 10).then(shouldReject, err => {
         expect(err.message).toBe('The default iterator in mapLimit expects an array of functions');
-      })
+      });
     });
 
   });
@@ -166,7 +166,7 @@ describe('when the iteratee function is omitted', () => {
         () => 'a sync result',
       ], 10).then(shouldReject, err => {
         expect(err.message).toBe('test error');
-      })
+      });
     });
 
   });
@@ -180,7 +180,7 @@ describe('when the iteratee function is omitted', () => {
         () => 'a sync result',
       ], 10).then(shouldReject, err => {
         expect(err.message).toBe('test error');
-      })
+      });
     });
 
   });
@@ -210,15 +210,15 @@ describe('when the iterable is omitted', () => {
 describe('when the limit is invalid', () => {
 
   it('should throw an error if limit is not a number', () => {
-    expect(() => mapLimit([], NaN)).toThrow('limit must be a finite integer >= 1');
+    expect(() => mapLimit([], NaN)).toThrow(RangeError, 'limit must be a finite integer >= 1');
   });
 
   it('should throw an error if limit is not finite', () => {
-    expect(() => mapLimit([], Infinity)).toThrow('limit must be a finite integer >= 1');
+    expect(() => mapLimit([], Infinity)).toThrow(RangeError, 'limit must be a finite integer >= 1');
   });
 
   it('should throw an error if limit is not an integer', () => {
-    expect(() => mapLimit([], 3.5)).toThrow('limit must be a finite integer >= 1');
+    expect(() => mapLimit([], 3.5)).toThrow(RangeError, 'limit must be a finite integer >= 1');
   });
 
 });
