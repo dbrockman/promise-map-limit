@@ -4,7 +4,7 @@ module.exports = mapLimit;
 
 function mapLimit(iterable, limit, iteratee) {
   if (!isFinite(limit) || limit < 1 || (limit % 1) !== 0) {
-    throw new Error('limit must be a finite integer >= 1');
+    throw new RangeError('Limit must be a finite integer >= 1');
   }
 
   if (!iterable) {
@@ -33,19 +33,21 @@ function mapLimit(iterable, limit, iteratee) {
       counter += 1;
       running += 1;
 
-      Promise.resolve(iteratorResult.value).then(iteratee || defaultIteratee).then(value => {
-        running -= 1;
-        results[index] = value;
-        if (done && running <= 0) {
-          resolve(results);
-          return;
-        }
-        replenish();
-      }, err => {
-        running -= 1;
-        done = true;
-        reject(err);
-      });
+      Promise.resolve(iteratorResult.value)
+        .then(iteratee || defaultIteratee)
+        .then(value => {
+          running -= 1;
+          results[index] = value;
+          if (done && running <= 0) {
+            resolve(results);
+            return;
+          }
+          replenish();
+        }, err => {
+          running -= 1;
+          done = true;
+          reject(err);
+        });
     }
 
     function replenish() {
@@ -67,7 +69,7 @@ function getIterator(iterable) {
 
 function defaultIteratee(fn) {
   if (typeof fn !== 'function') {
-    throw new Error('The default iterator in mapLimit expects an array of functions');
+    throw new TypeError('The default iterator in mapLimit expects an array of functions');
   }
   return fn();
 }
