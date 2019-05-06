@@ -1,9 +1,6 @@
 # promise-map-limit
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/dbrockman/promise-map-limit.svg)](https://greenkeeper.io/)
-
 Map an array n items at a time with promises
-
 
 ## API
 
